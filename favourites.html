@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="navBar">
+        <a href="./index.html">Home</a>
+        <a href="./contact.html">Contact List</a>
+        <a href="./favourites.html">Favourities</a>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile Number</th>
+                    <th>Type</th>
+                </tr>
+    
+            </thead>
+            <tbody id="tableBody">
+    
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    var favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+    // console.log(favourites);
+    function displayData(favourites) {
+        document.querySelector("#tableBody").innerHTML = '';
+         favourites.forEach(element => {
+             var row = document.createElement("tr");
+
+             var td1 = document.createElement("td");
+             td1.innerText = element.name;
+
+             var td2 = document.createElement("td");
+             td2.innerText = element.number;
+
+             var td3 = document.createElement("td");
+             td3.innerText = element.relation;
+
+             row.append(td1, td2, td3,);
+             document.querySelector("#tableBody").append(row);
+             })
+
+    }
+    window.addEventListener('load', function () {
+            displayData(favourites);
+        });
+</script>
+</html>

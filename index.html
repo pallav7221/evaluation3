@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="navBar">
+        <a href="./index.html">Home</a>
+        <a href="./contact.html">Contact List</a>
+        <a href="./favourites.html">Favourities</a>
+    </div>
+    <div id="formBox">
+        <h2>Enter your contact details</h2>
+        <form >
+            <input type="text"  placeholder="enter name"  id="name">
+            <input type="number" value="number" name="number" id="number" placeholder="Enter your number">
+            <select name="relation" id="relation">
+                <option value="friend">friend</option>
+                <option value="family">family</option>
+                <option value="others">other</option>
+            </select>
+            <input id="btn" type="submit" >
+        </form>
+    </div>
+    <script>
+        var contactList = JSON.parse(localStorage.getItem("contactList")) || [];
+        document.querySelector("#formBox").addEventListener("submit", myfunction);
+        function myfunction(){
+            event.preventDefault();
+            var contactData = {
+                name: document.querySelector("#name").value,
+                number: document.querySelector("#number").value,
+                relation: document.querySelector("#relation").value,
+            }
+            contactList.push(contactData);
+            localStorage.setItem("contactList", JSON.stringify(contactList));
+            alert("contact added");
+        } 
+    </script>
+</body>
+</html>
